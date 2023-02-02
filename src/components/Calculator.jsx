@@ -5,7 +5,7 @@ import { useState } from "react";
 
 // Calculator component
 export default function Calculator() {
-  // Usestates
+  // useStates
   const [resultScreen, setResultScreen] = useState([]); /* holds numbers/symbols in result screen */
   const [theme, setTheme] = useState(1); /* holds the current theme */
 
@@ -19,26 +19,25 @@ export default function Calculator() {
   // calculator result screen
   const calculatorResults = {
     backgroundColor: `${
-      theme === 1 ? "hsl(223, 31%, 20%)" : theme === 2 ? "hsl(0, 0%, 93%)" : "hsl(268, 71%, 12%)"
+      theme === 1 ? "hsl(224, 36%, 15%)" : theme === 2 ? "hsl(0, 5%, 81%)" : "hsl(268, 71%, 12%)"
     }`,
-    color: `${theme === 2 ? "hsl(60, 10%, 19%)" : "hsl(52, 100%, 62%)"}`,
-    padding: "20px",
-    borderRadius: "5px",
+    color: `${
+      theme === 1 ? "hsl(0, 0%, 100%)" : theme === 2 ? "hsl(60, 10%, 19%)" : "hsl(52, 100%, 62%)"
+    }`,
   };
   // calculator inputs
   const calculatorInputsBackgroundColor = {
     backgroundColor: `${
-      theme === 1 ? "hsl(224, 36%, 15%)" : theme === 2 ? "hsl(0, 5%, 81%)" : "hsl(268, 71%, 12%)"
+      theme === 1 ? "hsl(223, 31%, 20%)" : theme === 2 ? "hsl(0, 0%, 93%)" : "hsl(268, 71%, 12%)"
     }`,
-    padding: "20px",
-    borderRadius: "5px",
-    color: "blue",
   };
+  // ontop of calculator
   const headerColor = {
     color: `${
       theme === 1 ? "hsl(0, 0%, 100%)" : theme === 2 ? "hsl(60, 10%, 19%)" : "hsl(52, 100%, 62%)"
     }`,
   };
+
   // adds clicked inputs to array in resultScreen
   // or changes array in resultScreen to house calculated answer
   function addInputToResult(input) {
@@ -56,20 +55,20 @@ export default function Calculator() {
 
       // other symbol inputs except =
     } else if (["+", "-", "/", "*", "."].includes(input)) {
-      if (resultScreen.length === 0) console.log(false);
+      if (resultScreen.length === 0) return;
       else if (
         resultScreen.find(
           (currentValue, index, arr) =>
             index === resultScreen.length - 1 && ["+", "-", "/", "*", "."].includes(currentValue)
         )
       ) {
-        console.log("sign detected");
+        return;
       } else setResultScreen((prevResult) => [...prevResult, input === "*" ? "x" : input]);
 
       // = symbol
     } else if (input === "=") {
       if (["+", "-", "/", "*", "."].includes(resultScreen[resultScreen.length - 1])) {
-        return console.log("need number after symbol");
+        return;
       } else setResultScreen((prevResult) => [evalCalc(prevResult)]);
 
       // all number inputs
@@ -84,27 +83,19 @@ export default function Calculator() {
     return eval?.(changedSignArray.join(""));
   };
 
-  // controls what inputs are inputtable
+  // controls what inputs are inputtable trough keyobard on screen
   const inputController = (event) => {
-    console.log(event.target.value);
     let conditons = /([0-9]|[x/*+-.](?![x/*+-.]))/g;
     let conditonMatch = event.target.value.match(conditons);
-    console.log(conditonMatch);
-    console.log(event);
-    console.log(event.nativeEvent.data);
-    console.log(resultScreen);
     if (["+", "-", "/", "*", ".", "x"].includes(event.nativeEvent.data)) {
       if (
         resultScreen.length === 0 ||
         ["+", "-", "/", "*", ".", "x"].includes(resultScreen[resultScreen.length - 1])
       ) {
-        return console.log("need number after symbol");
+        return;
       } else setResultScreen((prevState) => conditonMatch);
     } else setResultScreen((prevState) => conditonMatch);
   };
-
-  console.log(resultScreen);
-  console.log(resultScreen?.length);
 
   // jsx
   return (
@@ -178,8 +169,6 @@ export default function Calculator() {
               if (event.nativeEvent.key === "Enter") addInputToResult("=");
             }}
           />
-          {/*       theme === 1 ? "hsl(223, 31%, 20%)" : theme === 2 ? "hsl(0, 0%, 93%)" : "hsl(268, 71%, 12%)"
-           */}
           {/* calculator inputs container */}
           <div
             className={`calculator__inputs__rows ${"calculator__inputs__rows--theme" + theme}`}
