@@ -8,3 +8,5 @@ A small project for a calculator.
 - was made with designs from frontend mentor, link: https://www.frontendmentor.io/challenges/calculator-app-9lteq5N29
 
 - calculator was made using react js/jsx and css
+
+calculator is hosted on github, link: https://erlandino.github.io/calculator/
