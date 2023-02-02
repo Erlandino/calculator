@@ -9,6 +9,8 @@ export default function Calculator() {
   const [resultScreen, setResultScreen] = useState([]); /* holds numbers/symbols in result screen */
   const [theme, setTheme] = useState(1); /* holds the current theme */
 
+  // colors
+
   // internal css for easy change in css according to theme change
   // whole background
   const websiteBackgroundColor = {
@@ -19,7 +21,7 @@ export default function Calculator() {
   // calculator result screen
   const calculatorResults = {
     backgroundColor: `${
-      theme === 1 ? "hsl(224, 36%, 15%)" : theme === 2 ? "hsl(0, 5%, 81%)" : "hsl(268, 71%, 12%)"
+      theme === 1 ? "hsl(224, 36%, 15%)" : theme === 2 ? "hsl(0, 0%, 93%)" : "hsl(268, 71%, 12%)"
     }`,
     color: `${
       theme === 1 ? "hsl(0, 0%, 100%)" : theme === 2 ? "hsl(60, 10%, 19%)" : "hsl(52, 100%, 62%)"
@@ -28,7 +30,7 @@ export default function Calculator() {
   // calculator inputs
   const calculatorInputsBackgroundColor = {
     backgroundColor: `${
-      theme === 1 ? "hsl(223, 31%, 20%)" : theme === 2 ? "hsl(0, 0%, 93%)" : "hsl(268, 71%, 12%)"
+      theme === 1 ? "hsl(223, 31%, 20%)" : theme === 2 ? "hsl(0, 5%, 81%)" : "hsl(268, 71%, 12%)"
     }`,
   };
   // ontop of calculator
@@ -37,11 +39,50 @@ export default function Calculator() {
       theme === 1 ? "hsl(0, 0%, 100%)" : theme === 2 ? "hsl(60, 10%, 19%)" : "hsl(52, 100%, 62%)"
     }`,
   };
+  const delThemeChange = {
+    backgroundColor: `${
+      theme === 1 ? "hsl(225, 21%, 49%)" : theme === 2 ? "hsl(185, 42%, 37%)" : "hsl(281, 89%, 26%)"
+    }`,
+    boxShadow: `${
+      theme === 1
+        ? "0px -2px 0px 0 hsl(224, 28%, 35%) inset"
+        : theme === 2
+        ? "0px -2px 0px 0 hsl(185, 58%, 25%) inset"
+        : "0px -2px 0px 0 hsl(285, 91%, 52%) inset"
+    }`,
+    color: "hsl(0, 0%, 100%)",
+  };
+  const resetThemeChange = {
+    backgroundColor: `${
+      theme === 1 ? "hsl(225, 21%, 49%)" : theme === 2 ? "hsl(185, 42%, 37%)" : "hsl(281, 89%, 26%)"
+    }`,
+    boxShadow: `${
+      theme === 1
+        ? "0px -2px 0px 0 hsl(224, 28%, 35%) inset"
+        : theme === 2
+        ? "0px -2px 0px 0 hsl(185, 58%, 25%) inset"
+        : "0px -2px 0px 0 hsl(285, 91%, 52%) inset"
+    }`,
+    color: "hsl(0, 0%, 100%)",
+  };
+  const equalThemeChange = {
+    backgroundColor: `${
+      theme === 1 ? "hsl(6, 63%, 50%)" : theme === 2 ? "hsl(25, 98%, 40%)" : "hsl(176, 100%, 44%)"
+    }`,
+    boxShadow: `${
+      theme === 1
+        ? "0px -2px 0px 0 hsl(6, 70%, 34%) inset"
+        : theme === 2
+        ? "0px -2px 0px 0 hsl(25, 99%, 27%) inset"
+        : "0px -2px 0px 0 hsl(177, 92%, 70%) inset"
+    }`,
+    color: `${theme === 3 ? "hsl(198, 20%, 13%)" : "hsl(0, 0%, 100%)"}`,
+  };
 
   // adds clicked inputs to array in resultScreen
   // or changes array in resultScreen to house calculated answer
   function addInputToResult(input) {
-    // del input
+    // del input (removes last character i result screen)
     if (input === "del") {
       setResultScreen((prevResult) => {
         return prevResult.filter((element, index, array) => {
@@ -49,11 +90,11 @@ export default function Calculator() {
         });
       });
 
-      // reset input
+      // reset input (removes all characters in result screen)
     } else if (input === "reset") {
       setResultScreen((prevResult) => []);
 
-      // other symbol inputs except =
+      // other inputs except = (equal)
     } else if (["+", "-", "/", "*", "."].includes(input)) {
       if (resultScreen.length === 0) return;
       else if (
@@ -65,7 +106,7 @@ export default function Calculator() {
         return;
       } else setResultScreen((prevResult) => [...prevResult, input === "*" ? "x" : input]);
 
-      // = symbol
+      // = input (equal)
     } else if (input === "=") {
       if (["+", "-", "/", "*", "."].includes(resultScreen[resultScreen.length - 1])) {
         return;
@@ -77,6 +118,8 @@ export default function Calculator() {
 
   // calculates received array
   const evalCalc = (input) => {
+    // maps array to take into consideration x (multiplication) and changes it to *.
+    // eval does not use x for multiplication and instead uses *
     let changedSignArray = input.map((currentIndex) => {
       return currentIndex === "x" ? "*" : [currentIndex];
     });
@@ -85,16 +128,25 @@ export default function Calculator() {
 
   // controls what inputs are inputtable trough keyobard on screen
   const inputController = (event) => {
+    /* regex to check for numbers and check for symbols that does not come after symbols */
     let conditons = /([0-9]|[x/*+-.](?![x/*+-.]))/g;
+    /* checks each character in result screen if it matches the conditions in the regex */
     let conditonMatch = event.target.value.match(conditons);
+    // stops user from inputting any symbols before inputting any numbers
     if (["+", "-", "/", "*", ".", "x"].includes(event.nativeEvent.data)) {
       if (
         resultScreen.length === 0 ||
         ["+", "-", "/", "*", ".", "x"].includes(resultScreen[resultScreen.length - 1])
       ) {
         return;
-      } else setResultScreen((prevState) => conditonMatch);
-    } else setResultScreen((prevState) => conditonMatch);
+      } else
+        setResultScreen(
+          (prevState) => conditonMatch
+        ); /* sends the characters to state called resultScreen*/
+    } else
+      setResultScreen(
+        (prevState) => conditonMatch
+      ); /* sends the characters to state called resultScreen*/
   };
 
   // jsx
@@ -202,6 +254,7 @@ export default function Calculator() {
                 className="calculator__inputs__rows__row__input calculator__inputs__rows__row__input--del"
                 type="button"
                 value={"DEL"}
+                style={delThemeChange}
                 onClick={() => addInputToResult("del")}
               />
             </div>
@@ -305,6 +358,7 @@ export default function Calculator() {
                 className="calculator__inputs__rows__row__input calculator__inputs__rows__row__input--reset"
                 type="button"
                 value={"RESET"}
+                style={resetThemeChange}
                 onClick={() => addInputToResult("reset")}
               />
               {/* = input (equal)*/}
@@ -312,6 +366,7 @@ export default function Calculator() {
                 className="calculator__inputs__rows__row__input calculator__inputs__rows__row__input--equal"
                 type="button"
                 value={"="}
+                style={equalThemeChange}
                 onClick={() => addInputToResult("=")}
               />
             </div>

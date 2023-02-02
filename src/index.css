@@ -25,7 +25,6 @@ body,
   flex-direction: row;
   align-items: flex-end;
   justify-content: space-between;
-  color: white;
   margin: 0 0 20px 0;
 }
 .calculator__header__theme {
@@ -42,7 +41,6 @@ body,
   width: 100%;
   background-color: transparent;
   border: none;
-  color: white;
   cursor: pointer;
 }
 .rc-slider {
@@ -60,7 +58,6 @@ body,
 }
 .calculator__inputs__results {
   width: 100%;
-  color: white;
   border: none;
   outline: none;
   font-size: 32px;
@@ -70,10 +67,6 @@ body,
 .calculator__header__theme__decider__values {
   display: flex;
   justify-content: space-between;
-}
-.calculator__header__theme__decider__slider {
-  width: 100%;
-  background-color: hsl(223, 31%, 20%);
 }
 .calculator__inputs__rows {
   display: flex;
@@ -94,25 +87,9 @@ body,
   border: none;
   cursor: pointer;
   box-shadow: 0px -2px 0px 0 gray inset;
-  color: hsl(221, 14%, 31%);
 }
 .input--number {
   font-size: 32px;
-}
-.calculator__inputs__rows__row__input--del {
-  background-color: hsl(225, 21%, 49%);
-  box-shadow: 0px -2px 0px 0 hsl(224, 28%, 35%) inset;
-  color: white;
-}
-.calculator__inputs__rows__row__input--reset {
-  background-color: hsl(225, 21%, 49%);
-  box-shadow: 0px -2px 0px 0 hsl(224, 28%, 35%) inset;
-  color: white;
-}
-.calculator__inputs__rows__row__input--equal {
-  background-color: hsl(6, 63%, 50%);
-  box-shadow: 0px -2px 0px 0 hsl(6, 70%, 34%) inset;
-  color: white;
 }
 
 .calculator__inputs__rows--theme1 .input--number,
@@ -128,24 +105,4 @@ body,
   color: hsl(52, 100%, 62%);
   background-color: hsl(268, 47%, 21%);
   box-shadow: 0px -2px 0px 0 hsl(290, 70%, 36%) inset;
-}
-.calculator__inputs__rows--theme3 .calculator__inputs__rows__row__input--equal {
-  color: hsl(198, 20%, 13%);
-  background-color: hsl(176, 100%, 44%);
-  box-shadow: 0px -2px 0px 0 hsl(177, 92%, 70%) inset;
-}
-.calculator__inputs__rows--theme2 .calculator__inputs__rows__row__input--equal {
-  background-color: hsl(25, 98%, 40%);
-  box-shadow: 0px -2px 0px 0 hsl(25, 99%, 27%) inset;
-}
-.calculator__inputs__rows--theme3 .calculator__inputs__rows__row__input--del,
-.calculator__inputs__rows--theme3 .calculator__inputs__rows__row__input--reset {
-  background-color: hsl(281, 89%, 26%);
-  box-shadow: 0px -2px 0px 0 hsl(285, 91%, 52%) inset;
-}
-
-.calculator__inputs__rows--theme2 .calculator__inputs__rows__row__input--del,
-.calculator__inputs__rows--theme2 .calculator__inputs__rows__row__input--reset {
-  background-color: hsl(185, 42%, 37%);
-  box-shadow: 0px -2px 0px 0 hsl(185, 58%, 25%) inset;
 }
