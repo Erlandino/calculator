@@ -9,8 +9,6 @@ export default function Calculator() {
   const [resultScreen, setResultScreen] = useState([]); /* holds numbers/symbols in result screen */
   const [theme, setTheme] = useState(1); /* holds the current theme */
 
-  // colors
-
   // internal css for easy change in css according to theme change
   // whole background
   const websiteBackgroundColor = {
@@ -38,45 +36,6 @@ export default function Calculator() {
     color: `${
       theme === 1 ? "hsl(0, 0%, 100%)" : theme === 2 ? "hsl(60, 10%, 19%)" : "hsl(52, 100%, 62%)"
     }`,
-  };
-  const delThemeChange = {
-    backgroundColor: `${
-      theme === 1 ? "hsl(225, 21%, 49%)" : theme === 2 ? "hsl(185, 42%, 37%)" : "hsl(281, 89%, 26%)"
-    }`,
-    boxShadow: `${
-      theme === 1
-        ? "0px -2px 0px 0 hsl(224, 28%, 35%) inset"
-        : theme === 2
-        ? "0px -2px 0px 0 hsl(185, 58%, 25%) inset"
-        : "0px -2px 0px 0 hsl(285, 91%, 52%) inset"
-    }`,
-    color: "hsl(0, 0%, 100%)",
-  };
-  const resetThemeChange = {
-    backgroundColor: `${
-      theme === 1 ? "hsl(225, 21%, 49%)" : theme === 2 ? "hsl(185, 42%, 37%)" : "hsl(281, 89%, 26%)"
-    }`,
-    boxShadow: `${
-      theme === 1
-        ? "0px -2px 0px 0 hsl(224, 28%, 35%) inset"
-        : theme === 2
-        ? "0px -2px 0px 0 hsl(185, 58%, 25%) inset"
-        : "0px -2px 0px 0 hsl(285, 91%, 52%) inset"
-    }`,
-    color: "hsl(0, 0%, 100%)",
-  };
-  const equalThemeChange = {
-    backgroundColor: `${
-      theme === 1 ? "hsl(6, 63%, 50%)" : theme === 2 ? "hsl(25, 98%, 40%)" : "hsl(176, 100%, 44%)"
-    }`,
-    boxShadow: `${
-      theme === 1
-        ? "0px -2px 0px 0 hsl(6, 70%, 34%) inset"
-        : theme === 2
-        ? "0px -2px 0px 0 hsl(25, 99%, 27%) inset"
-        : "0px -2px 0px 0 hsl(177, 92%, 70%) inset"
-    }`,
-    color: `${theme === 3 ? "hsl(198, 20%, 13%)" : "hsl(0, 0%, 100%)"}`,
   };
 
   // adds clicked inputs to array in resultScreen
@@ -254,7 +213,6 @@ export default function Calculator() {
                 className="calculator__inputs__rows__row__input calculator__inputs__rows__row__input--del"
                 type="button"
                 value={"DEL"}
-                style={delThemeChange}
                 onClick={() => addInputToResult("del")}
               />
             </div>
@@ -358,7 +316,6 @@ export default function Calculator() {
                 className="calculator__inputs__rows__row__input calculator__inputs__rows__row__input--reset"
                 type="button"
                 value={"RESET"}
-                style={resetThemeChange}
                 onClick={() => addInputToResult("reset")}
               />
               {/* = input (equal)*/}
@@ -366,7 +323,6 @@ export default function Calculator() {
                 className="calculator__inputs__rows__row__input calculator__inputs__rows__row__input--equal"
                 type="button"
                 value={"="}
-                style={equalThemeChange}
                 onClick={() => addInputToResult("=")}
               />
             </div>
