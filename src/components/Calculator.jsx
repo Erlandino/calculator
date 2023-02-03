@@ -94,7 +94,8 @@ export default function Calculator() {
     // stops user from inputting any symbols before inputting any numbers
     if (["+", "-", "/", "*", ".", "x"].includes(event.nativeEvent.data)) {
       if (
-        resultScreen?.length === 0 ||
+        resultScreen === null ||
+        resultScreen.length === 0 ||
         ["+", "-", "/", "*", ".", "x"].includes(resultScreen[resultScreen.length - 1])
       ) {
         return;
@@ -107,6 +108,7 @@ export default function Calculator() {
         (prevState) => conditonMatch
       ); /* sends the characters to state called resultScreen*/
   };
+  console.log(resultScreen);
 
   // jsx
   return (
