@@ -1,14 +1,19 @@
+/* imports */
 @import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap");
+/* removes default styling*/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-weight: 700;
 }
+/* adds imported font to font family */
 body,
 #root {
   font-family: "League Spartan";
 }
+
+/* background/body */
 .background {
   height: 100vh;
   display: flex;
@@ -16,10 +21,13 @@ body,
   align-items: center;
   flex-direction: column;
 }
+/* calculator container */
 .calculator {
   width: 90%;
   max-width: 350px;
 }
+
+/* calculator header (on top of calculator) */
 .calculator__header {
   display: flex;
   flex-direction: row;
@@ -32,7 +40,6 @@ body,
   flex-direction: row;
   align-items: flex-end;
   gap: 10px;
-  /* width: 100px; */
 }
 .calculator__header__theme__decider {
   width: 50px;
@@ -43,6 +50,10 @@ body,
   border: none;
   cursor: pointer;
 }
+.calculator__header__theme__decider__values {
+  display: flex;
+  justify-content: space-between;
+}
 .rc-slider {
   background-color: hsl(223, 31%, 20%);
   border-right: 10px solid hsl(223, 31%, 20%);
@@ -51,11 +62,15 @@ body,
   flex-direction: column;
   justify-content: center;
 }
+
+/* calculator keypad and result screen */
 .calculator__inputs {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
+
+/* result screen */
 .calculator__inputs__results {
   width: 100%;
   border: none;
@@ -64,10 +79,7 @@ body,
   padding: 20px;
   border-radius: 5px;
 }
-.calculator__header__theme__decider__values {
-  display: flex;
-  justify-content: space-between;
-}
+/* Calculator keypad */
 .calculator__inputs__rows {
   display: flex;
   flex-direction: column;

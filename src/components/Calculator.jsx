@@ -108,7 +108,6 @@ export default function Calculator() {
         (prevState) => conditonMatch
       ); /* sends the characters to state called resultScreen*/
   };
-  console.log(resultScreen);
 
   // jsx
   return (
