@@ -94,7 +94,7 @@ export default function Calculator() {
     // stops user from inputting any symbols before inputting any numbers
     if (["+", "-", "/", "*", ".", "x"].includes(event.nativeEvent.data)) {
       if (
-        resultScreen.length === 0 ||
+        resultScreen?.length === 0 ||
         ["+", "-", "/", "*", ".", "x"].includes(resultScreen[resultScreen.length - 1])
       ) {
         return;
@@ -153,12 +153,11 @@ export default function Calculator() {
               </div>
               {/* slider */}
               <Slider
+                className={theme === 1 ? "theme1" : theme === 2 ? "theme2" : "theme3"}
                 style={{ padding: "10px", borderRadius: "20px" }}
                 min={1}
                 max={3}
-                handleStyle={[
-                  { border: "none", backgroundColor: "hsl(6, 63%, 50%)", marginTop: "0px" },
-                ]}
+                handleStyle={[{ border: "none", marginTop: "0px" }]}
                 railStyle={{ backgroundColor: "transparent" }}
                 trackStyle={{ backgroundColor: "transparent" }}
                 onChange={(event) => setTheme(event)}
