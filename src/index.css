@@ -1,14 +1,19 @@
+/* imports */
 @import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap");
+/* removes default styling*/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-weight: 700;
 }
+/* adds imported font to font family */
 body,
 #root {
   font-family: "League Spartan";
 }
+
+/* background/body */
 .background {
   height: 100vh;
   display: flex;
@@ -16,10 +21,13 @@ body,
   align-items: center;
   flex-direction: column;
 }
+/* calculator container */
 .calculator {
   width: 90%;
   max-width: 350px;
 }
+
+/* calculator header (on top of calculator) */
 .calculator__header {
   display: flex;
   flex-direction: row;
@@ -32,7 +40,6 @@ body,
   flex-direction: row;
   align-items: flex-end;
   gap: 10px;
-  /* width: 100px; */
 }
 .calculator__header__theme__decider {
   width: 50px;
@@ -43,6 +50,10 @@ body,
   border: none;
   cursor: pointer;
 }
+.calculator__header__theme__decider__values {
+  display: flex;
+  justify-content: space-between;
+}
 .rc-slider {
   background-color: hsl(223, 31%, 20%);
   border-right: 10px solid hsl(223, 31%, 20%);
@@ -51,11 +62,15 @@ body,
   flex-direction: column;
   justify-content: center;
 }
+
+/* calculator keypad and result screen */
 .calculator__inputs {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
+
+/* result screen */
 .calculator__inputs__results {
   width: 100%;
   border: none;
@@ -64,10 +79,7 @@ body,
   padding: 20px;
   border-radius: 5px;
 }
-.calculator__header__theme__decider__values {
-  display: flex;
-  justify-content: space-between;
-}
+/* Calculator keypad */
 .calculator__inputs__rows {
   display: flex;
   flex-direction: column;
@@ -92,17 +104,120 @@ body,
   font-size: 32px;
 }
 
+/* Themes */
+/* Theme 1 */
 .calculator__inputs__rows--theme1 .input--number,
 .calculator__inputs__rows--theme1 .input--symbol {
   color: hsl(221, 14%, 31%);
 }
+
+.calculator__inputs__rows--theme1 .calculator__inputs__rows__row__input--equal {
+  background-color: hsl(6, 63%, 50%);
+  box-shadow: 0px -2px 0px 0 hsl(6, 70%, 34%) inset;
+  color: hsl(0, 0%, 100%);
+}
+.calculator__inputs__rows--theme1 .calculator__inputs__rows__row__input--reset,
+.calculator__inputs__rows--theme1 .calculator__inputs__rows__row__input--del {
+  background-color: hsl(225, 21%, 49%);
+  box-shadow: 0px -2px 0px 0 hsl(224, 28%, 35%) inset;
+  color: hsl(0, 0%, 100%);
+}
+.theme1 .rc-slider-handle {
+  background-color: hsl(6, 63%, 50%);
+}
+/* hover */
+.calculator__inputs__rows--theme1 .calculator__inputs__rows__row__input--reset:hover,
+.calculator__inputs__rows--theme1 .calculator__inputs__rows__row__input--del:hover {
+  background-color: hsl(225, 21%, 70%);
+}
+
+.calculator__inputs__rows--theme1 .input--number:hover,
+.calculator__inputs__rows--theme1 .input--symbol:hover {
+  background-color: hsl(0, 0%, 100%);
+}
+.calculator__inputs__rows--theme1 .calculator__inputs__rows__row__input--equal:hover {
+  background-color: hsl(6, 63%, 60%);
+}
+
+.theme1 .rc-slider-handle:hover {
+  background-color: hsl(6, 63%, 70%);
+}
+
+/* Theme 2 */
 .calculator__inputs__rows--theme2 .input--number,
 .calculator__inputs__rows--theme2 .input--symbol {
   color: hsl(60, 10%, 19%);
 }
+.calculator__inputs__rows--theme2 .calculator__inputs__rows__row__input--equal {
+  background-color: hsl(25, 98%, 40%);
+  box-shadow: 0px -2px 0px 0 hsl(25, 99%, 27%) inset;
+  color: hsl(0, 0%, 100%);
+}
+.calculator__inputs__rows--theme2 .calculator__inputs__rows__row__input--reset,
+.calculator__inputs__rows--theme2 .calculator__inputs__rows__row__input--del {
+  background-color: hsl(185, 42%, 37%);
+  box-shadow: 0px -2px 0px 0 hsl(185, 58%, 25%) inset;
+  color: hsl(0, 0%, 100%);
+}
+.theme2 .rc-slider-handle {
+  background-color: hsl(25, 98%, 40%);
+}
+/* hover */
+.calculator__inputs__rows--theme2 .calculator__inputs__rows__row__input--reset:hover,
+.calculator__inputs__rows--theme2 .calculator__inputs__rows__row__input--del:hover {
+  background-color: hsl(225, 21%, 70%);
+}
+
+.calculator__inputs__rows--theme2 .input--number:hover,
+.calculator__inputs__rows--theme2 .input--symbol:hover {
+  background-color: hsl(0, 0%, 100%);
+}
+.calculator__inputs__rows--theme2 .calculator__inputs__rows__row__input--equal:hover {
+  background-color: hsl(6, 63%, 60%);
+}
+
+.theme2 .rc-slider-handle:hover {
+  background-color: hsl(6, 63%, 60%);
+}
+
+/* Theme 3 */
 .calculator__inputs__rows--theme3 .input--number,
 .calculator__inputs__rows--theme3 .input--symbol {
   color: hsl(52, 100%, 62%);
   background-color: hsl(268, 47%, 21%);
   box-shadow: 0px -2px 0px 0 hsl(290, 70%, 36%) inset;
 }
+
+.calculator__inputs__rows--theme3 .calculator__inputs__rows__row__input--equal {
+  background-color: hsl(176, 100%, 44%);
+  box-shadow: 0px -2px 0px 0 hsl(177, 92%, 70%) inset;
+  color: hsl(198, 20%, 13%);
+}
+.calculator__inputs__rows--theme3 .calculator__inputs__rows__row__input--reset,
+.calculator__inputs__rows--theme3 .calculator__inputs__rows__row__input--del {
+  background-color: hsl(281, 89%, 26%);
+  box-shadow: 0px -2px 0px 0 hsl(285, 91%, 52%) inset;
+  color: hsl(0, 0%, 100%);
+}
+.theme3 .rc-slider-handle {
+  background-color: hsl(176, 100%, 44%);
+}
+
+/* hover */
+.calculator__inputs__rows--theme3 .calculator__inputs__rows__row__input--reset:hover,
+.calculator__inputs__rows--theme3 .calculator__inputs__rows__row__input--del:hover {
+  background-color: hsl(281, 89%, 46%);
+}
+
+.calculator__inputs__rows--theme3 .input--number:hover,
+.calculator__inputs__rows--theme3 .input--symbol:hover {
+  background-color: hsl(268, 47%, 41%);
+}
+.calculator__inputs__rows--theme3 .calculator__inputs__rows__row__input--equal:hover {
+  background-color: hsl(176, 100%, 64%);
+}
+
+.theme3 .rc-slider-handle:hover {
+  background-color: hsl(176, 100%, 64%);
+}
+/* Themes end */
